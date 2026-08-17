@@ -101,7 +101,7 @@ export function Tasks() {
         id: uid(),
         title: title.trim(),
         list,
-        time: schedule.scheduleMode === "exactTime" ? schedule.time : undefined,
+        time: (schedule.scheduleMode === "exactTime" ? schedule.time : "") ?? "",
         scheduleMode: schedule.scheduleMode,
         relativeAnchor:
           schedule.scheduleMode === "relativePrayer" ? schedule.relativeAnchor : undefined,
