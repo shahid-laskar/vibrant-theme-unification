@@ -213,19 +213,11 @@ export function Tasks() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="time"
-                aria-label="Due time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                className="control numeric h-[42px] w-auto px-3 text-sm"
-              />
-              <Action type="submit" variant="solid" className="btn-solid h-[42px] px-5 font-bold">
-                Add Task
-              </Action>
-            </div>
+            <Action type="submit" variant="solid" className="btn-solid h-[42px] px-5 font-bold">
+              Add Task
+            </Action>
           </div>
+          <ScheduleField value={schedule} onChange={setSchedule} idPrefix="task-vibrant" />
           <RecurrenceField value={recur} onChange={setRecur} compact />
         </form>
 
