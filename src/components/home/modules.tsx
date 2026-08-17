@@ -101,7 +101,10 @@ export function Tasks() {
         id: uid(),
         title: title.trim(),
         list,
-        time,
+        time: schedule.scheduleMode === "exactTime" ? schedule.time : undefined,
+        scheduleMode: schedule.scheduleMode,
+        relativeAnchor:
+          schedule.scheduleMode === "relativePrayer" ? schedule.relativeAnchor : undefined,
         done: false,
         date: today,
         recur: { ...recur },
@@ -110,7 +113,7 @@ export function Tasks() {
       ...tasks,
     ]);
     setTitle("");
-    setTime("");
+    setSchedule({ ...EMPTY_SCHEDULE });
     setRecur({ freq: "none", start: today });
   }
 
