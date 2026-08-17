@@ -156,6 +156,7 @@ function Today() {
   const [expenses] = useStore<{ amount: number; date: string }[]>("expenses", []);
   const [limits] = useStore<Record<string, number>>("limits", {});
   const [hifzItems] = useStore<HifzItem[]>("hifz", []);
+  const [routines] = useStore<Routine[]>("routines", []);
   const [salah] = useSalah();
   const countdown = useNextPrayer();
   const prayers = usePrayers();
