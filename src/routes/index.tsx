@@ -78,6 +78,7 @@ const TABS = [
   { id: "meals", label: "Meals" },
   { id: "grocery", label: "Grocery" },
   { id: "kids", label: "Kids" },
+  { id: "routines", label: "Routines" },
   { id: "deeds", label: "Deeds" },
   { id: "calendar", label: "Calendar" },
   { id: "notes", label: "Notes" },
