@@ -195,6 +195,7 @@ function Today() {
         expenses,
         limits,
         activeReminders,
+        routines,
       }),
     [
       now,
@@ -215,6 +216,7 @@ function Today() {
       expenses,
       limits,
       activeReminders,
+      routines,
     ],
   );
 
