@@ -17,6 +17,11 @@ import { Action, EmptyState, Field, Meter, Section, Tick } from "@/components/ve
 import { ProgressRing } from "@/components/veedu/bento";
 import { useLogGroceryRun } from "@/components/budget/history";
 import { RecurrenceField, RepeatChip } from "@/components/veedu/recurrence-field";
+import {
+  EMPTY_SCHEDULE,
+  ScheduleField,
+  type ScheduleValue,
+} from "@/components/veedu/schedule-field";
 import { type Recurrence, isRepeating, nextOccurrence, occursOn } from "@/lib/recurrence";
 import { todayKey, uid, useStore } from "@/lib/store";
 import { type FamilyMember, type Chore } from "@/lib/family-model";
@@ -55,7 +60,7 @@ export function Tasks() {
   const [list, setList] = useState("General");
   const [filter, setFilter] = useState<"all" | "today" | "done">("all");
   const [title, setTitle] = useState("");
-  const [time, setTime] = useState("");
+  const [schedule, setSchedule] = useState<ScheduleValue>({ ...EMPTY_SCHEDULE });
   const [recur, setRecur] = useState<Recurrence>({ freq: "none", start: todayKey() });
   const today = todayKey();
 
@@ -96,7 +101,11 @@ export function Tasks() {
         id: uid(),
         title: title.trim(),
         list,
-        time,
+        time: (schedule.scheduleMode === "exactTime" ? schedule.time : "") ?? "",
+        scheduleMode: schedule.scheduleMode,
+        ...(schedule.scheduleMode === "relativePrayer" && schedule.relativeAnchor
+          ? { relativeAnchor: schedule.relativeAnchor }
+          : {}),
         done: false,
         date: today,
         recur: { ...recur },
@@ -105,7 +114,7 @@ export function Tasks() {
       ...tasks,
     ]);
     setTitle("");
-    setTime("");
+    setSchedule({ ...EMPTY_SCHEDULE });
     setRecur({ freq: "none", start: today });
   }
 
@@ -204,19 +213,11 @@ export function Tasks() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="time"
-                aria-label="Due time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                className="control numeric h-[42px] w-auto px-3 text-sm"
-              />
-              <Action type="submit" variant="solid" className="btn-solid h-[42px] px-5 font-bold">
-                Add Task
-              </Action>
-            </div>
+            <Action type="submit" variant="solid" className="btn-solid h-[42px] px-5 font-bold">
+              Add Task
+            </Action>
           </div>
+          <ScheduleField value={schedule} onChange={setSchedule} idPrefix="task-vibrant" />
           <RecurrenceField value={recur} onChange={setRecur} compact />
         </form>
 
@@ -335,17 +336,11 @@ export function Tasks() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <input
-            type="time"
-            aria-label="Due time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            className="border-border/80 numeric h-[42px] rounded-xl border bg-transparent px-2.5 text-sm"
-          />
           <Action type="submit" variant="solid" className="h-[42px]">
             Add
           </Action>
         </div>
+        <ScheduleField value={schedule} onChange={setSchedule} idPrefix="task-calm" />
         <RecurrenceField value={recur} onChange={setRecur} compact />
       </form>
 

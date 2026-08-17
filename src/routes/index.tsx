@@ -35,6 +35,8 @@ import {
   type Task,
 } from "@/components/home/modules";
 import { Notes } from "@/components/home/notes";
+import { Routines } from "@/components/home/routines";
+import type { Routine } from "@/lib/routine-engine";
 import { UnifiedCalendar, eventsOn, type CalEvent } from "@/components/home/calendar";
 import { Reminders, useReminderEngine } from "@/components/home/reminders";
 import { useNextPrayer, usePrayers, useSalah } from "@/components/deen/modules";
@@ -76,6 +78,7 @@ const TABS = [
   { id: "meals", label: "Meals" },
   { id: "grocery", label: "Grocery" },
   { id: "kids", label: "Kids" },
+  { id: "routines", label: "Routines" },
   { id: "deeds", label: "Deeds" },
   { id: "calendar", label: "Calendar" },
   { id: "notes", label: "Notes" },
@@ -153,6 +156,7 @@ function Today() {
   const [expenses] = useStore<{ amount: number; date: string }[]>("expenses", []);
   const [limits] = useStore<Record<string, number>>("limits", {});
   const [hifzItems] = useStore<HifzItem[]>("hifz", []);
+  const [routines] = useStore<Routine[]>("routines", []);
   const [salah] = useSalah();
   const countdown = useNextPrayer();
   const prayers = usePrayers();
@@ -191,6 +195,7 @@ function Today() {
         expenses,
         limits,
         activeReminders,
+        routines,
       }),
     [
       now,
@@ -211,6 +216,7 @@ function Today() {
       expenses,
       limits,
       activeReminders,
+      routines,
     ],
   );
 
@@ -950,6 +956,7 @@ function HomePage() {
       {tab === "meals" && <Meals />}
       {tab === "grocery" && <GroceryList />}
       {tab === "kids" && <Kids />}
+      {tab === "routines" && <Routines />}
       {tab === "deeds" && <Deeds />}
       {tab === "calendar" && <UnifiedCalendar />}
       {tab === "notes" && <Notes />}
