@@ -60,7 +60,7 @@ export function Tasks() {
   const [list, setList] = useState("General");
   const [filter, setFilter] = useState<"all" | "today" | "done">("all");
   const [title, setTitle] = useState("");
-  const [time, setTime] = useState("");
+  const [schedule, setSchedule] = useState<ScheduleValue>({ ...EMPTY_SCHEDULE });
   const [recur, setRecur] = useState<Recurrence>({ freq: "none", start: todayKey() });
   const today = todayKey();
 
