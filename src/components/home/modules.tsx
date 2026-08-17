@@ -17,6 +17,11 @@ import { Action, EmptyState, Field, Meter, Section, Tick } from "@/components/ve
 import { ProgressRing } from "@/components/veedu/bento";
 import { useLogGroceryRun } from "@/components/budget/history";
 import { RecurrenceField, RepeatChip } from "@/components/veedu/recurrence-field";
+import {
+  EMPTY_SCHEDULE,
+  ScheduleField,
+  type ScheduleValue,
+} from "@/components/veedu/schedule-field";
 import { type Recurrence, isRepeating, nextOccurrence, occursOn } from "@/lib/recurrence";
 import { todayKey, uid, useStore } from "@/lib/store";
 import { type FamilyMember, type Chore } from "@/lib/family-model";
