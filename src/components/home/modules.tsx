@@ -103,8 +103,9 @@ export function Tasks() {
         list,
         time: (schedule.scheduleMode === "exactTime" ? schedule.time : "") ?? "",
         scheduleMode: schedule.scheduleMode,
-        relativeAnchor:
-          schedule.scheduleMode === "relativePrayer" ? schedule.relativeAnchor : undefined,
+        ...(schedule.scheduleMode === "relativePrayer" && schedule.relativeAnchor
+          ? { relativeAnchor: schedule.relativeAnchor }
+          : {}),
         done: false,
         date: today,
         recur: { ...recur },
