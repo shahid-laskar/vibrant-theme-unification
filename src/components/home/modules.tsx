@@ -336,17 +336,11 @@ export function Tasks() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <input
-            type="time"
-            aria-label="Due time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            className="border-border/80 numeric h-[42px] rounded-xl border bg-transparent px-2.5 text-sm"
-          />
           <Action type="submit" variant="solid" className="h-[42px]">
             Add
           </Action>
         </div>
+        <ScheduleField value={schedule} onChange={setSchedule} idPrefix="task-calm" />
         <RecurrenceField value={recur} onChange={setRecur} compact />
       </form>
 
