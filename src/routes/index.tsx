@@ -956,6 +956,7 @@ function HomePage() {
       {tab === "meals" && <Meals />}
       {tab === "grocery" && <GroceryList />}
       {tab === "kids" && <Kids />}
+      {tab === "routines" && <Routines />}
       {tab === "deeds" && <Deeds />}
       {tab === "calendar" && <UnifiedCalendar />}
       {tab === "notes" && <Notes />}
