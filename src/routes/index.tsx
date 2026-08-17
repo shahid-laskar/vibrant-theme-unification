@@ -35,6 +35,8 @@ import {
   type Task,
 } from "@/components/home/modules";
 import { Notes } from "@/components/home/notes";
+import { Routines } from "@/components/home/routines";
+import type { Routine } from "@/lib/routine-engine";
 import { UnifiedCalendar, eventsOn, type CalEvent } from "@/components/home/calendar";
 import { Reminders, useReminderEngine } from "@/components/home/reminders";
 import { useNextPrayer, usePrayers, useSalah } from "@/components/deen/modules";
